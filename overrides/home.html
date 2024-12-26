@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+<!-- Render hero under tabs -->
+{% block tabs %} {{ super() }}
+
+<style>
+  /* Application header should be static for the landing page */
+  .md-header {
+    position: initial;
+  }
+
+  /* Remove spacing, as we cannot hide it completely */
+  .md-main__inner {
+    margin: 0;
+  }
+
+  /* Hide main content for now */
+  .md-content {
+    display: none;
+  }
+
+  /* Hide table of contents */
+  @media screen and (min-width: 60em) {
+    .md-sidebar--secondary {
+      display: none;
+    }
+  }
+
+  /* Hide navigation */
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
+</style>
+
+
+<!-- Additional styles for bar hero -->
+<style>
+  .tx-container {
+    padding-top: 0rem;
+    background: linear-gradient(
+      to bottom,
+      var(--md-primary-fg-color),
+      {{config.home_gradient_hsla}} 100%
+    );
+  }
+
+  .tx-hero {
+    margin: 32px 2.8rem;
+    color: var(--md-primary-bg-color);
+    justify-content: center;
+  }
+
+  .tx-hero h1 {
+    margin-bottom: 1rem;
+    color: currentColor;
+    font-weight: 700;
+  }
+
+  .tx-hero__content {
+    padding-bottom: 1rem;
+    margin: 0 auto;
+  }
+
+  .tx-hero__image {
+    width: 17rem;
+    height: 17rem;
+    order: 1;
+    padding-right: 2.5rem;
+  }
+
+  @media screen and (max-width: 30em) {
+    .tx-hero h1 {
+      font-size: 1.4rem;
+    }
+    .tx-hero__image {
+      width: 15rem;
+      height: 15rem;
+      order: 1;
+      padding-right: 2.5rem;
+    }
+  }
+
+  @media screen and (min-width: 60em) {
+    .tx-hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tx-hero__content {
+      max-width: 22rem;
+      margin-top: 3.5rem;
+      margin-bottom: 3.5rem;
+      margin-left: 1rem;
+      margin-right: 4rem;
+      align-items: center;
+    }
+  }
+</style>
+<section class="tx-container">
+  <div class="md-grid md-typeset">
+    <div class="tx-hero">
+      <!-- Custom Image -->
+      <div class="tx-hero__image">
+        <img src="{{ config.home_cover_image }}" draggable="false" />
+      </div>
+
+      <!-- Main Tagline -->
+      <div class="tx-hero__content">
+        <h1>{{ config.home_tagline }}</h1>
+        <p>{{ config.home_description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+<!-- Content Remove -->
+{% block content %}{% endblock %}
+
+<!-- Application footer -->
+{% block footer %}{{ super() }}{% endblock %}
